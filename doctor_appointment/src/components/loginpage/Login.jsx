@@ -1,9 +1,6 @@
-import React, { useState } from 'react'
 import Popup from 'reactjs-popup'
-import SelectionType from '../selectionType/SelectionType'
+import SelectionType from './selectionType/SelectionType'
 const Login = () => {
-
-    const [showSelectionType, setShowSelectionType] = useState(false)
    
 
   return (
@@ -12,7 +9,7 @@ const Login = () => {
 
 
        
-        <Popup trigger={<p>Don't have an accoutn <a href="#" onClick={()=>setShowSelectionType(true)}>Register</a> yourself</p>}>
+        <Popup trigger={<p>Don't have an account <a href="#">Register</a> yourself</p>}>
             <SelectionType/>
         </Popup>
 
