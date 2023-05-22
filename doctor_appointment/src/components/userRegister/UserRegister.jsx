@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './UserRegister.css'
 import { useNavigate } from 'react-router-dom'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function UserRegister() {
   const[name, setName] = useState('')
@@ -22,7 +24,9 @@ function UserRegister() {
         password:password,
         phone_num:phone_num})
     })
-
+    if(response.status === 200){
+      navigate('/login')
+    }
     console.log(response.status)
   }
 
@@ -49,6 +53,33 @@ function UserRegister() {
       <input onChange={(e)=>setPassword(e.target.value)} type = "password" id='p'  placeholder="Enter Password" /></div>
       <div><label htmlFor = 'ph'>Phone No:</label>
       <input onChange={(e)=>setPhNum(e.target.value)} type = "text" id='ph'  placeholder="Enter PhoneNumber" /></div>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control type="text" placeholder="Ente Full Name" />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control type="int" placeholder="Enter Your Age" />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control type="email" placeholder="Enter email" />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control type="password" placeholder="Enter password" />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control type="text" placeholder="Enter phone number" />
+      </Form.Group>
+
+      <Form.Check inline label="Male" name="group1" type="radio" value="M"/>
+      <Form.Check inline label="Female" name="group1" type="radio" value="F"/>
+      <Form.Check inline label="Others" name="group1" type="radio" value="O"/>
+      <Button type="submit">
+      SignUp
+      </Button>
       <input type="submit" value="SignUp"/>
     </form>
     </div>
