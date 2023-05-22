@@ -1,0 +1,22 @@
+.parent-div{
+    text-align: center;
+    justify-content: center;
+    
+}
+
+.parent-div h2{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color:rebeccapurple ;
+}
+
+.form-div{
+    margin: auto;
+    /* background: red; */
+    width: 60%;
+}
+.form-div input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 80%;
+}

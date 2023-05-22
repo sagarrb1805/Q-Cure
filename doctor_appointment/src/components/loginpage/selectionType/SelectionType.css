@@ -1,4 +1,15 @@
 .popup-div{
-    border: 2px solid green;
+    border: 2px solid #d9b3ff;
+    width: 500px;
+    text-align: center;
     
+}
+.popup-form input{
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+.submit-btn{
+    background-color: #d9b3ff;
+    border: #ca99fb;
 }
