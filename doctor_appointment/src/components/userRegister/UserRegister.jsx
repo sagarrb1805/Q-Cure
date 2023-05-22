@@ -3,7 +3,10 @@ import './UserRegister.css'
 
 function UserRegister() {
   return (
-    <><div>UserRegister</div>
+    <>
+    <div className = "box">
+    <h2>UserRegister</h2>
+   
     <form action="post">
       <div><label for = 'name'>Name:</label>
       <input type = "text" id='name'  placeholder="Enter Name" /></div>
@@ -27,7 +30,10 @@ function UserRegister() {
       
       <input type="submit" value="SignUp"/>
       {/* <input type="submit" value="SignUp">SignUp</input> */}
-    </form></>
+    </form>
+    </div>
+    </>
+    
     
   )
 }
