@@ -1,0 +1,14 @@
+.menubar{
+    border: 0px;
+    margin-left: 20px;
+}
+
+.menubar p{
+    padding-bottom: 10px;
+}
+
+.menubar button{
+    background: none;
+    border: 0px;
+    width: 80%;
+}
