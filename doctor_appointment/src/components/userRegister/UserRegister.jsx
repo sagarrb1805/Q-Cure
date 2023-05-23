@@ -18,11 +18,17 @@ function UserRegister() {
     const response = await fetch('http://localhost:2000/addUser', {
       method: 'POST',
       headers: {"Content-Type":'application/json'}, 
-      body: JSON.stringify({age:age,
+      body: JSON.stringify({
+        name:name,
+        age:age,
         sex:sex,
         email:email,
         password:password,
-        phone_num:phone_num})
+        phone_num:phone_num, 
+        user_type:{
+          user_type_id:2
+      }
+      })
     })
     if(response.status === 200){
       navigate('/login')
