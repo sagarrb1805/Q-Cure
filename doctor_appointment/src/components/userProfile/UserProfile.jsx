@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import UserHome from './userHome/UserHome';
 
+
 import { renderMatches } from 'react-router-dom';
 import BookAppointment from './bookAppointment/BookAppointment';
 import History from './History/History';
@@ -14,9 +15,10 @@ import UpcomingBookings from './UpcomingBookings/UpcomingBookings';
 
 function UserProfile() {
     const [selectedPage, setSelectedPage] = useState('None')
+    
     // const [page, setPage] = useState(<></>)
 
-    var element = <UserHome/>
+    var element;
 
     function optionSelect(menuSelected){
         // console.log(menuSelected)
@@ -40,15 +42,24 @@ function UserProfile() {
         element = <UpcomingBookings/>
     }
 
+
     return (
-        <Container style={{border: '0px', margin:'0px'}}>
-            <Row style={{border:'0px'}}>
-                <Col className='menubar-list' xs={12} md={4} > <MenuBar selectOption={optionSelect}/></Col>
-                <Col>{element}</Col>
-            </Row>
-        </Container>
-        )
-           
-}
+        // <Container style={{border: '0px', margin:'0px'}}>
+        //     <Row style={{border:'0px'}}>
+            //    <div> <Col className='menubar-list' xs={12} md={4} >
+            
+            
+           <div>
+            <div>
+                <MenuBar selectOption={optionSelect}/>
+                </div>
+                <div> <Col>{element}</Col>
+            </div>
+            </div>
+        
+    
+        );
+    }
+
 
 export default UserProfile;
