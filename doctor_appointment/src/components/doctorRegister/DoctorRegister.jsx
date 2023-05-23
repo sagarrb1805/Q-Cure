@@ -2,7 +2,7 @@ import React from 'react';
 import './DoctorRegister.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
 
 function DoctorRegister() {
@@ -17,7 +17,16 @@ function DoctorRegister() {
   const[location, setLocation] = useState('')
   const[specialization, setSpecialization] = useState('')
   const[HospitalName,setHospitalName] = useState('')
+  const[userRes, setUserRes] = useState(0)
+
   const navigate = useNavigate()
+
+
+    useEffect(() => {
+      setUserRes(0); // <-- intentional side-effect
+    }, [userRes]);
+
+  
 
   const onSubmit = async() => {
     const response = await fetch('http://localhost:2000/addUser', {
@@ -37,27 +46,43 @@ function DoctorRegister() {
     })
     
     if(response.status === 200){
-      console.log(response.status)
+      // console.log(response.status)
       // const use_id = response.json().then((user) => {return user.user_id})
-      const use_id = response.json().then((user) => {return user.user_id})
-      console.log(use_id)
+      // response.json().then((user) => {setUserRes(user.user_id)})
+
+      const json_response = await response.json()
+      // console.log(response)
+      // console.log(json_response)
+      const use_id = json_response.user_id
+      // console.log(use_id)
+
+      // const use_id = response.json().then((user) => {return setUserRes(user)})
+      // var use_id = 0;
+      // console.log(use_id)
+      // console.log(userRes)
+      const res = await fetch('http://localhost:2000/addDoctor', {
+        method: 'POST',
+        headers: {"Content-Type":'application/json'}, 
+        body: JSON.stringify({
+          is_verified:0,
+          specialization:specialization,
+          hospital_name:HospitalName,
+          location:location,
+          experience:experience,
+          qualification:Qualification,
+          doctor:{
+            user_id:use_id
+        }
+      })
+      })
+
+      if(res.status == 200){
+        navigate('/login')
+      }
     }
     
   }
-  const onRegister = async(e) => {
-    e.preventDefault()
-    const response = await fetch('http://localhost:2000/addUser', {
-      method: 'POST',
-      headers: {"Content-Type":'application/json'}, 
-      body: JSON.stringify({
-        
-      })
-    })
-    if(response.status === 200){
-      navigate('/login')
-    }
-    console.log(response.data)
-  }
+  
 
     
   return (
@@ -144,7 +169,7 @@ function DoctorRegister() {
       <Form.Check onChange={(e) => setGender(e.target.value)} inline label="Male" name="group1" type="radio" value="M"/>
       <Form.Check onChange={(e) => setGender(e.target.value)} inline label="Female" name="group1" type="radio" value="F"/>
       <Form.Check onChange={(e) => setGender(e.target.value)} inline label="Others" name="group1" type="radio" value="O"/>
-      <Button type="submit"  onClick={onRegister}>
+      <Button type="submit"  onClick={onSubmit}>
       SignUp
       </Button>
           

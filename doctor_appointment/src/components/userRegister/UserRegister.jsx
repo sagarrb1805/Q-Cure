@@ -35,8 +35,8 @@ function UserRegister() {
       navigate('/login')
       console.log(response.status)
       // const use_id = response.json().then((user) => {return user.user_id})
-      const use_id = response.json().then((user) => {return user.user_id})
-      console.log(use_id)
+      // const use_id = response.json().then((user) => {return user.user_id})
+      // console.log(use_id)
     }
     
   }
