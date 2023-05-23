@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import UserHome from './userHome/UserHome';
 
+
 import { renderMatches } from 'react-router-dom';
 import BookAppointment from './bookAppointment/BookAppointment';
 import History from './History/History';
@@ -18,7 +19,6 @@ function UserProfile() {
     // const [page, setPage] = useState(<></>)
 
     var element;
-    //  = <UserHome/>
 
     function optionSelect(menuSelected){
         // console.log(menuSelected)
@@ -33,7 +33,7 @@ function UserProfile() {
         }
     }
     if (selectedPage === 'home'){
-        element = <MenuBar></MenuBar>
+        element = <UserHome></UserHome>
     }else if(selectedPage === 'book'){
         element = <BookAppointment/>
     }else if(selectedPage === 'history'){
@@ -42,22 +42,24 @@ function UserProfile() {
         element = <UpcomingBookings/>
     }
 
+
     return (
-
-        <div>
-            <div><MenuBar selectOption={optionSelect}/></div>
-                <div>{element}</div>
-        </div>
-        
         // <Container style={{border: '0px', margin:'0px'}}>
-
         //     <Row style={{border:'0px'}}>
-        //         <Col> <MenuBar selectOption={optionSelect}/></Col>
-        //         <Col>{element}</Col>
-        //     </Row>
-        // </Container>
-        )
-           
-}
+            //    <div> <Col className='menubar-list' xs={12} md={4} >
+            
+            
+           <div>
+            <div>
+                <MenuBar selectOption={optionSelect}/>
+                </div>
+                <div> <Col>{element}</Col>
+            </div>
+            </div>
+        
+    
+        );
+    }
+
 
 export default UserProfile;

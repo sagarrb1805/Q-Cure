@@ -10,7 +10,7 @@ function MenuBar({selectOption}) {
   return ( 
     <><div>UserHome</div><CardGroup>
       <div>
-        <Card >
+        <Card className='home-card'>
         <p onClick={()=>selectOption("home")}> <button>Home</button></p>
           <Card.Img src="https://thumbayhospital.com/wp-content/uploads/2017/12/book-1.jpg" alt="Card image" />
           <Card.ImgOverlay>
