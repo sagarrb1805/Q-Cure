@@ -14,9 +14,11 @@ import UpcomingBookings from './UpcomingBookings/UpcomingBookings';
 
 function UserProfile() {
     const [selectedPage, setSelectedPage] = useState('None')
+    
     // const [page, setPage] = useState(<></>)
 
-    var element = <UserHome/>
+    var element;
+    //  = <UserHome/>
 
     function optionSelect(menuSelected){
         // console.log(menuSelected)
@@ -31,7 +33,7 @@ function UserProfile() {
         }
     }
     if (selectedPage === 'home'){
-        element = <UserHome></UserHome>
+        element = <MenuBar></MenuBar>
     }else if(selectedPage === 'book'){
         element = <BookAppointment/>
     }else if(selectedPage === 'history'){
@@ -41,12 +43,19 @@ function UserProfile() {
     }
 
     return (
-        <Container style={{border: '0px', margin:'0px'}}>
-            <Row style={{border:'0px'}}>
-                <Col className='menubar-list' xs={12} md={4} > <MenuBar selectOption={optionSelect}/></Col>
-                <Col>{element}</Col>
-            </Row>
-        </Container>
+
+        <div>
+            <div><MenuBar selectOption={optionSelect}/></div>
+                <div>{element}</div>
+        </div>
+        
+        // <Container style={{border: '0px', margin:'0px'}}>
+
+        //     <Row style={{border:'0px'}}>
+        //         <Col> <MenuBar selectOption={optionSelect}/></Col>
+        //         <Col>{element}</Col>
+        //     </Row>
+        // </Container>
         )
            
 }
