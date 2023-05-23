@@ -6,6 +6,7 @@ import CardGroup from 'react-bootstrap/CardGroup';
 import { Navigate } from 'react-router';
 
 function MenuBar({selectOption}) {
+  
     
   return ( 
     <><div>UserHome</div><CardGroup>

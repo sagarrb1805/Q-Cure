@@ -2,9 +2,67 @@ import React from 'react';
 import './DoctorRegister.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 function DoctorRegister() {
+  const[name,setName] = useState('')
+  const[age,setAge] = useState(0)
+  const [sex, setGender] = useState('')
+  const[email, setEmail] = useState('')
+  const[password, setPassword] = useState('')
+  const[phone_num, setPhNum] = useState('')
+  const [Qualification, setQualification] = useState('')
+  const[experience, setExperience] = useState('')
+  const[location, setLocation] = useState('')
+  const[specialization, setSpecialization] = useState('')
+  const[HospitalName,setHospitalName] = useState('')
+  const navigate = useNavigate()
+
+  const onSubmit = async() => {
+    const response = await fetch('http://localhost:2000/addUser', {
+      method: 'POST',
+      headers: {"Content-Type":'application/json'}, 
+      body: JSON.stringify({
+        name:name,
+        age:age,
+        sex:sex,
+        email:email,
+        password:password,
+        phone_num:phone_num, 
+        user_type:{
+          user_type_id:3
+      }
+      })
+    })
+    
+    if(response.status === 200){
+      console.log(response.status)
+      // const use_id = response.json().then((user) => {return user.user_id})
+      const use_id = response.json().then((user) => {return user.user_id})
+      console.log(use_id)
+    }
+    
+  }
+  const onRegister = async(e) => {
+    e.preventDefault()
+    const response = await fetch('http://localhost:2000/addUser', {
+      method: 'POST',
+      headers: {"Content-Type":'application/json'}, 
+      body: JSON.stringify({
+        
+      })
+    })
+    if(response.status === 200){
+      navigate('/login')
+    }
+    console.log(response.data)
+  }
+
+    
   return (
+    
+
     // <div className='parent-div'>
     //   <h2>DOCTOR REGISTRATION</h2>
     // <div className='box'>
@@ -54,30 +112,39 @@ function DoctorRegister() {
    <> <div className = "box">
     <h2>Doctor Register</h2>
     <><Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Control type="text" placeholder="Ente Full Name" />
+          <Form.Control onChange={(e)=>setName(e.target.value)} type="text" placeholder="Ente Full Name" />
         </Form.Group><Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control type="int" placeholder="Enter Your Age" />
+            <Form.Control onChange={(e)=>setAge(e.target.value)} type="int" placeholder="Enter Your Age" />
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control  type="email" placeholder="Enter email" />
+        <Form.Control onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Enter email" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control  type="password" placeholder="Enter password" />
+        <Form.Control onChange={(e) => setPassword(e.target.value)}  type="password" placeholder="Enter password" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control  type="text" placeholder="Enter phone number" />
+        <Form.Control onChange={(e) => setPhNum(e.target.value)}  type="text" placeholder="Enter phone number" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control  type="text" placeholder="Specialization" />
+        <Form.Control onChange={(e) => setSpecialization(e.target.value)} type="text" placeholder="Specialization" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control  type="text" placeholder="Enter Hospital Name" />
+        <Form.Control onChange={(e) => setHospitalName(e.target.value)} type="text" placeholder="Enter Hospital Name" />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control  type="text" placeholder="Experience" />
+        <Form.Control onChange={(e) => setExperience(e.target.value)} type="text" placeholder="Experience" />
       </Form.Group>
-      <Button type="submit" >
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control onChange={(e) => setLocation(e.target.value)}  type="text" placeholder="Enter Location" />
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control onChange={(e) => setQualification(e.target.value)} type="text" placeholder="Enter Qualification" />
+      </Form.Group>
+      <Form.Check onChange={(e) => setGender(e.target.value)} inline label="Male" name="group1" type="radio" value="M"/>
+      <Form.Check onChange={(e) => setGender(e.target.value)} inline label="Female" name="group1" type="radio" value="F"/>
+      <Form.Check onChange={(e) => setGender(e.target.value)} inline label="Others" name="group1" type="radio" value="O"/>
+      <Button type="submit"  onClick={onRegister}>
       SignUp
       </Button>
           

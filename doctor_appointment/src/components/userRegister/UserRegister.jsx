@@ -30,10 +30,15 @@ function UserRegister() {
       }
       })
     })
+    
     if(response.status === 200){
       navigate('/login')
+      console.log(response.status)
+      // const use_id = response.json().then((user) => {return user.user_id})
+      const use_id = response.json().then((user) => {return user.user_id})
+      console.log(use_id)
     }
-    console.log(response.status)
+    
   }
 
   return (
@@ -79,6 +84,7 @@ function UserRegister() {
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control onChange={(e)=>setPhNum(e.target.value)} type="text" placeholder="Enter phone number" />
       </Form.Group>
+      
 
       <Form.Check onChange={(e)=>setGender(e.target.value)} inline label="Male" name="group1" type="radio" value="M"/>
       <Form.Check onChange={(e)=>setGender(e.target.value)} inline label="Female" name="group1" type="radio" value="F"/>
