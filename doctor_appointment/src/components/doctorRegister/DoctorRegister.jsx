@@ -21,11 +21,6 @@ function DoctorRegister() {
 
   const navigate = useNavigate()
 
-
-    useEffect(() => {
-      setUserRes(0); // <-- intentional side-effect
-    }, [userRes]);
-
   
 
   const onSubmit = async() => {
