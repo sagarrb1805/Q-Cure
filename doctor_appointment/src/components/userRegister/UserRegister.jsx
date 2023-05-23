@@ -35,7 +35,7 @@ function UserRegister() {
     <div className = "box">
     <h2>UserRegister</h2>
    
-    <form action="post" onSubmit={onSubmit}>
+    {/* <form action="post" onSubmit={onSubmit}>
       <div><label htmlFor = 'name'>Name:</label>
       <input onChange={(e)=>setName(e.target.value)} type = "text" id='name'  placeholder="Enter Name" /></div>
       <div><label htmlFor = 'age'>Age:</label>
@@ -52,36 +52,36 @@ function UserRegister() {
       <div><label htmlFor = 'p'>Password:</label>
       <input onChange={(e)=>setPassword(e.target.value)} type = "password" id='p'  placeholder="Enter Password" /></div>
       <div><label htmlFor = 'ph'>Phone No:</label>
-      <input onChange={(e)=>setPhNum(e.target.value)} type = "text" id='ph'  placeholder="Enter PhoneNumber" /></div>
+      <input onChange={(e)=>setPhNum(e.target.value)} type = "text" id='ph'  placeholder="Enter PhoneNumber" /></div> */}
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control type="text" placeholder="Ente Full Name" />
+        <Form.Control onChange={(e)=>setName(e.target.value)} type="text" placeholder="Ente Full Name" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control type="int" placeholder="Enter Your Age" />
+        <Form.Control onChange={(e)=>setAge(e.target.value)} type="int" placeholder="Enter Your Age" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control type="email" placeholder="Enter email" />
+        <Form.Control onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Enter email" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control type="password" placeholder="Enter password" />
+        <Form.Control onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Enter password" />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control type="text" placeholder="Enter phone number" />
+        <Form.Control onChange={(e)=>setPhNum(e.target.value)} type="text" placeholder="Enter phone number" />
       </Form.Group>
 
-      <Form.Check inline label="Male" name="group1" type="radio" value="M"/>
-      <Form.Check inline label="Female" name="group1" type="radio" value="F"/>
-      <Form.Check inline label="Others" name="group1" type="radio" value="O"/>
-      <Button type="submit">
+      <Form.Check onChange={(e)=>setGender(e.target.value)} inline label="Male" name="group1" type="radio" value="M"/>
+      <Form.Check onChange={(e)=>setGender(e.target.value)} inline label="Female" name="group1" type="radio" value="F"/>
+      <Form.Check onChange={(e)=>setGender(e.target.value)} inline label="Others" name="group1" type="radio" value="O"/>
+      <Button type="submit" onClick={onSubmit}>
       SignUp
       </Button>
-      <input type="submit" value="SignUp"/>
-    </form>
+      {/* <input type="submit" value="SignUp"/> */}
+    {/* </form> */}
     </div>
     </>
     
