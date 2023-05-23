@@ -1,36 +1,87 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './UserRegister.css'
+import { useNavigate } from 'react-router-dom'
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 function UserRegister() {
+  const[name, setName] = useState('')
+  const[age, setAge] = useState(0)
+  const [sex, setGender] = useState('')
+  const[email, setEmail] = useState('')
+  const[password, setPassword] = useState('')
+  const[phone_num, setPhNum] = useState('')
+  const navigate = useNavigate()
+
+  const onSubmit = async(e) => {
+    e.preventDefault()
+    const response = await fetch('http://localhost:2000/addUser', {
+      method: 'POST',
+      headers: {"Content-Type":'application/json'}, 
+      body: JSON.stringify({age:age,
+        sex:sex,
+        email:email,
+        password:password,
+        phone_num:phone_num})
+    })
+    if(response.status === 200){
+      navigate('/login')
+    }
+    console.log(response.status)
+  }
+
   return (
     <>
     <div className = "box">
     <h2>UserRegister</h2>
    
-    <form action="post">
-      <div><label for = 'name'>Name:</label>
-      <input type = "text" id='name'  placeholder="Enter Name" /></div>
-      <div><label for = 'age'>Age:</label>
-      <input type = "text" id='age'  placeholder="Enter Age" /></div>
-      <div><label for = 's'>SEX:</label></div>
-      <div><label for = "Male">Male</label>
-     <input type = "radio" name ="r" id = "Male" value = "M"/></div>
-    <div> <label for = "Male">Female</label>
-        <input type = "radio"  name = "r" id = "Female" value = "F"/></div>
-        <div><label for = "Male">Others</label>
-        <input type = "radio"  name = "r" id = "Others" value = "Others"/></div>
-        <div><label for = 'email'>Email:</label>
-      <input type = "text" id='email'  placeholder="Enter Email" /></div>
-      <div><label for = 'p'>Password:</label>
-      <input type = "password" id='p'  placeholder="Enter Password" /></div>
-      <div><label for = 'ph'>Phone No:</label>
-      <input type = "text" id='ph'  placeholder="Enter PhoneNumber" /></div>
-      
+    {/* <form action="post" onSubmit={onSubmit}>
+      <div><label htmlFor = 'name'>Name:</label>
+      <input onChange={(e)=>setName(e.target.value)} type = "text" id='name'  placeholder="Enter Name" /></div>
+      <div><label htmlFor = 'age'>Age:</label>
+      <input onChange={(e)=>setAge(e.target.value)} type = "int" id='age'  placeholder="Enter Age" /></div>
+      <div><label htmlFor = 's'>SEX:</label></div>
+      <div><label htmlFor = "Male">Male</label>
+     <input onChange={(e)=>setGender(e.target.value)} type = "radio" name ="r" id = "Male" value = "M"/></div>
+    <div> <label htmlFor = "Male">Female</label>
+        <input onChange={(e)=>setGender(e.target.value)} type = "radio"  name = "r" id = "Female" value = "F"/></div>
+        <div><label htmlFor = "Male">Others</label>
+        <input onChange={(e)=>setGender(e.target.value)} type = "radio"  name = "r" id = "Others" value = "Others"/></div>
+        <div><label htmlFor = 'email'>Email:</label>
+      <input onChange={(e)=>setEmail(e.target.value)} type = "email" id='email'  placeholder="Enter Email" /></div>
+      <div><label htmlFor = 'p'>Password:</label>
+      <input onChange={(e)=>setPassword(e.target.value)} type = "password" id='p'  placeholder="Enter Password" /></div>
+      <div><label htmlFor = 'ph'>Phone No:</label>
+      <input onChange={(e)=>setPhNum(e.target.value)} type = "text" id='ph'  placeholder="Enter PhoneNumber" /></div> */}
 
-      
-      <input type="submit" value="SignUp"/>
-      {/* <input type="submit" value="SignUp">SignUp</input> */}
-    </form>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control onChange={(e)=>setName(e.target.value)} type="text" placeholder="Ente Full Name" />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control onChange={(e)=>setAge(e.target.value)} type="int" placeholder="Enter Your Age" />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control onChange={(e)=>setEmail(e.target.value)} type="email" placeholder="Enter email" />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control onChange={(e)=>setPassword(e.target.value)} type="password" placeholder="Enter password" />
+      </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control onChange={(e)=>setPhNum(e.target.value)} type="text" placeholder="Enter phone number" />
+      </Form.Group>
+
+      <Form.Check onChange={(e)=>setGender(e.target.value)} inline label="Male" name="group1" type="radio" value="M"/>
+      <Form.Check onChange={(e)=>setGender(e.target.value)} inline label="Female" name="group1" type="radio" value="F"/>
+      <Form.Check onChange={(e)=>setGender(e.target.value)} inline label="Others" name="group1" type="radio" value="O"/>
+      <Button type="submit" onClick={onSubmit}>
+      SignUp
+      </Button>
+      {/* <input type="submit" value="SignUp"/> */}
+    {/* </form> */}
     </div>
     </>
     
