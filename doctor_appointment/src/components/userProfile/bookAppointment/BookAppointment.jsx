@@ -47,8 +47,30 @@ function BookAppointment({use_id}) {
     
     if(response.status === 200){
       
+      const json_response = await response.json()
+      const patient_details_id = json_response.patient_details_id
 
-      console.log("patient details added")
+      // console.log(json_response)
+      // console.log(patient_details_id)
+
+      const res = await fetch('http://localhost:2000/addAppointment', {
+      method: 'POST',
+      headers: {"Content-Type":'application/json'}, 
+      body: JSON.stringify({
+
+        start_time:toEpoch(appoinmentDate),
+        patient_details:{
+          patient_details_id:patient_details_id 
+        },
+        doctor_details:{
+          doctor_details_id:docselected 
+        }
+        
+      })
+    })
+    if (res.status === 200){
+      console.log("Slot booked!")
+    }
     }
 
     // console.log(bloodGroup + weight + docselected+toEpoch(appoinmentDate))
@@ -82,11 +104,12 @@ function BookAppointment({use_id}) {
       <label for="dog-names">Choose a doctor:</label> 
         <select name="dog-names" id="dog-names" onChange={(e)=>setDocSelected(e.target.value)}> 
         {docList.map((doctor)=>{
-          return <option  value={doctor.doctor.user_id}>{doctor.doctor.name} | {doctor.doctor.sex} | {doctor.experience} | {doctor.hospital_name} | {doctor.qualification}</option>
+          return <option key={doctor.doctor_details_id}  value={doctor.doctor_details_id}>{doctor.doctor.name} | {doctor.doctor.sex} | {doctor.experience} | {doctor.hospital_name} | {doctor.qualification}</option>
         })}
             
         </select>
         <br />
+
         <Button type="submit" onClick={onSubmit}>
       Submit
       </Button>

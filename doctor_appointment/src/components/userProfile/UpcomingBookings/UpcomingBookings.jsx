@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 
-function UpcomingBookings({use_id}) {
+function UpcomingBookings({use_id, patient_id}) {
   const[appointments, setAppointments] = useState([])
 
   const getAppointments = async()=>{
-    const response = await fetch('http://localhost:2000/getAppointmentByPatientId/'+use_id, {
+    const response = await fetch('http://localhost:2000/getAppointmentByPatientId/'+patient_id, {
       method: 'GET',
       headers: {"Content-Type":'application/json'}
     }).then((response) => response.json()) 
