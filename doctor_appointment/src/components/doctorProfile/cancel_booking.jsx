@@ -1,8 +1,8 @@
 import React from 'react'
 
-function History({use_id}) {
+function cancel_booking({use_id}) {
   return (
-    <div>History</div>
+    <div>Cancel</div>
   )
 }
 
