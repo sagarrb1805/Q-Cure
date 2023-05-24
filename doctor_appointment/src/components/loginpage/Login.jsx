@@ -1,7 +1,7 @@
 import Popup from 'reactjs-popup'
 import SelectionType from './selectionType/SelectionType'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { createSearchParams,Link, useNavigate } from 'react-router-dom'
 import './login.css'
 
 
@@ -29,12 +29,16 @@ const Login = () => {
       // navigate('/user-profile')
       // const json_response = await response.json()
       const json_response = await response.json()
+      console.log(json_response)
       const user = json_response.user_type
       const user_type = user.user_type_id
+      const use_id = json_response.user_id
       if (user_type === 1){
         navigate('/admin-profile')
       }else if (user_type === 2){
-        navigate('/user-profile')
+        navigate({pathname:'/user-profile',search: createSearchParams({
+          id: use_id
+        }).toString()})
       }else{
         navigate('/doctor-profile')
       }

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function History() {
+function History({use_id}) {
   return (
     <div>History</div>
   )
