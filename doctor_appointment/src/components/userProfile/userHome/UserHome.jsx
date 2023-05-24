@@ -8,7 +8,7 @@ function UserHome(selectOption) {
   var element;
   return (
     <>
-    <div>UserHome</div>
+    <div>DoctorHome</div>
     </>
     
   );
